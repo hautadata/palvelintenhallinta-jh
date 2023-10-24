@@ -1,6 +1,6 @@
-#H1 - Hello World!
+#H0 - Hello World!
 
 a) Ensimmäinen tehtävä oli kokeilla GitHubia!
 
-##H2 - Lähteet:
+## - Lähteet:
 https://terokarvinen.com/2023/create-a-web-page-using-github/
