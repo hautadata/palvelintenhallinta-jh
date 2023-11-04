@@ -22,15 +22,15 @@ Tässä käyttäjän Richard Slater vastaus tiivistettynä:
 
 - Vagrant luo uuden virtuaalikoneen automaattisesti.
   
-- Vagrantin ja virtualboxin asennus komennolla $ sudo apt-get -y install vagrant virtualbox. (Karvinen, 2017)
+- Vagrantin ja virtualboxin asennus komennolla ``$ sudo apt-get -y install vagrant virtualbox``  (Karvinen, 2017)
   
-- Uuden palvelimen luonti $ vagrant init bento/haluttupalvelin
+- Uuden palvelimen luonti ``$ vagrant init bento/haluttupalvelin``
 
-- Vagrant päälle $ vagrant up
+- Vagrant päälle ``$ vagrant up``
   
-- SSH-yhteys vagrantille $ vagrant ssh
+- SSH-yhteys vagrantille ``$ vagrant ssh``
 
-- Koneen ja tiedostojen tuho $ vagrant destroy.
+- Koneen ja tiedostojen tuho ``$ vagrant destroy``
 
   ---
 
@@ -38,10 +38,10 @@ Tässä käyttäjän Richard Slater vastaus tiivistettynä:
 
 - Kolmen virtuaalikoneen keskitetyn hallintajärjestelmän luominen, jolle Teron luoma valmis ajettava vagrant-tiedosto.
 - Orjien avaimien hyväksyminen herra-koneelta, ja yhteyksien testaus.
-- Shell-komentojen ajo ja tietojen kerääminen orjakoneilta. ($ sudo salt '*' grains.items)
+- Shell-komentojen ajo ja tietojen kerääminen orjakoneilta. (``$ sudo salt '*' grains.items``)
 - Idempotentin ajo ja palvelujen asennus, testaus sekä sammutus. (apache2)
 - Infra as code, ajettavat komennot .sls-tekstitiedostossa. Sisennyksellä ON väliä. (Karvinen, 2023)
-- Meillä ei ole lemmikkejä, vaan karjaa josta voi huoletta luopua. $ vagrant destroy.
+- Meillä ei ole lemmikkejä, vaan karjaa josta voi huoletta luopua. (``$ vagrant destroy``)
 
 ## a) Asenna Vagrant
 
