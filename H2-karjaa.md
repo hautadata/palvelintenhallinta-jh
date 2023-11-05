@@ -178,7 +178,7 @@ Halusin tässä vain lähinnä korostaa sitä että Saltissa erityisesti cmd.run
 
 Tämä kohta vaikutti itselleni aika monimutkaiselta, joten lähdin siinä lähinnä toistamaan samaa jota Tero oli tehnyt ohjeessaan ”_Salt Vagrant - automatically provision one master and two slaves_”.
 
-Yleensä tykkään hieman kikkailla ja kokeilla omia juttuja, enkä mennä suoraan samoilla esimerkeillä joita opettaja on käyttänyt mutta tässä koin sen fiksuimmaksi jotta ymmärrän miten homma toimii.
+Yleensä tykkään hieman kikkailla ja kokeilla omia juttuja, enkä mennä suoraan samoilla esimerkeillä joita opettaja on käyttänyt mutta tässä koin sen fiksuimmaksi, jotta ymmärrän miten homma toimii.
 
 Loin uuden kansion hakemiston /srv/salt/hello komennolla ``$ sudo mkdir -p /srv/salt/hello`` . Loin sen jälkeen init-tiedoston komennolla ``$ sudoedit /srv/salt/hello/init.sls`` , ja lisäsin sinne saman tekstin jonka Tero on lisännyt (muutin vain nimeä) eli 
 
