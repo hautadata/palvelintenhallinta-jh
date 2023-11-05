@@ -45,7 +45,7 @@ Tässä käyttäjän Richard Slater vastaus tiivistettynä:
 
 ## a) Asenna Vagrant
 
-Asensin Vagrantin Teron “Infra as Code 2023”-sivun H2-vinkit kohdassa olevasta Hashicorpin linkistä omalle raudalleni. Valitsin käyttöjärjestelmäksi siis Windowsin (en ole vielä vaihtanut kokonaan Linuxiin), ja sille AMD64-version.
+Asensin Vagrantin Teron “_Infra as Code 2023_”-sivun (Karvinen, 2023) H2-vinkit kohdassa olevasta Hashicorpin linkistä omalle raudalleni. Valitsin käyttöjärjestelmäksi siis Windowsin (en ole vielä vaihtanut kokonaan Linuxiin), ja sille AMD64-version.
 Latauksessa meni pari minuuttia, jonka jälkeen avasin installerin. Hyväksyin käyttöehdot, ja Vagrant lähti asentumaan. Tässäkin meni pari minuuttia. 
 
 Alla: Vagrant-tiedoston valitseminen.
@@ -232,9 +232,12 @@ That's it. Poistutaan tmasterista ja vagrantista komennolla `$ exit` ja sammutet
 
 Bias, R. 29.11.2016. The History of Pets vs Cattle and How to Use the Analogy Properly. Luettavissa: https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/. Luettu: 4.11.2023. (via https://devops.stackexchange.com/questions/653/what-is-the-definition-of-cattle-not-pets#654) 
 
-Karvinen, T. 11.4.2017. Vagrant Revisited – Install & Boot New Virtual Machine in 31 seconds. Luettavissa: https://terokarvinen.com/2017/04/11/vagrant-revisited-install-boot-new-virtual-machine-in-31-seconds/. Luettu: 4.11.2023.
+Karvinen, T. 13.10.2023. Infra as Code 2023 - h2 karjaa. Luettavissa: https://terokarvinen.com/2023/configuration-management-2023-autumn/. Luettu: 4.11.2023
 
 Karvinen, T. 28.3.2023. Salt Vagrant - automatically provision one master and two slaves. Luettavissa: https://terokarvinen.com/2023/salt-vagrant/. Luettu: 4.11.2023.
+
+Karvinen, T. 11.4.2017. Vagrant Revisited – Install & Boot New Virtual Machine in 31 seconds. Luettavissa: https://terokarvinen.com/2017/04/11/vagrant-revisited-install-boot-new-virtual-machine-in-31-seconds/. Luettu: 4.11.2023.
+
 
 Vagrant s.a. Get Started. Luettavissa: https://developer.hashicorp.com/vagrant/tutorials/getting-started. Luettu: 4.11.2023.
 
