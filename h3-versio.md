@@ -131,6 +131,50 @@ Alla: Lokitiedostojen tarkastelua, ja käyttäjätunnuksen vaihtaminan ja varmis
 
 ## e) Vapaaehtoinen: yhteistyötä
 
+Lähdimme Thomaksen kanssa kokeilemaan yhteistyötä. Minä loin julkisen avaimen jonka annoin Thomakselle, ja hän lisäsi sen hänen GitHubiinsa. Loin Windows terminalissa kotikansioni /github kansioon uuden alakansion komennolla `$ mkdir /github/thomaskey` , jossa lähdin luomaan uutta julkista avainta. Tein tämän komennolla `$ ssh-keygen -o -t rsa` , jossa -o tarkoittaa OpenSSH-formaattia ja -t RSA/SHA256-avaintyypin valintaa, aivan kuten oman varaston avaimenikin luomisessa.
+
+`Alla: Uuden julkisen avaimen luominen onnistuneesti.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/63afbbb5-aa40-44b3-bbab-3ca2e1808ee6)
+
+--- 
+
+Tämä komento loi avaimen, joka löytyi /github/thomaskey-kansiosta nimellä thomaskey.pub. Kyseessä on microsoft publisher-tiedosto, jonka avasin muistiolla. Kopioin koko avaimen, ja lähetin sen Thomakselle. Hän lisäsi avaimeni hänen tämän tehtävän GitHub-varastoon. 
+
+Sitten oli aika kloonata varasto. Vaihdoin Git Bashiin takaisin, johon kirjauduin komennolla `$ ssh -T git@github.com`  Varmistin että olen haluamassani /thomaskey-kansiossa, ja aloin kloonaamaan Thomaksen kansiota. Tein tämän komennolla `$ git clone git@github.com:ThomasHelminen/winter-management.git` .
+
+`Alla: Thomaksen varaston kloonaaminen koneelleni.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/53145d72-58d9-4796-aca9-98f6fd516b06)
+
+---
+
+Kloonaus onnistui, ja lähdin tekemään sinne omia muutoksia. Loin uuden tiedoston komennolla `$ nano joonastesti.md` , ja lisäsin sinne hieman tekstiä. Tallennus ja ulos ctrl + o ja ctrl + x. Käytin vielä komentoja `$ ls ` ja `$ cat joonastesti.md` , joilla tarkistin että tiedostoni on siellä ja sisältää tekstini. 
+
+`Alla: Luomani tiedosto ja sen sisällön tarkastus Thomaksen varastossa omalla koneellani.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/12ddcbf4-4f71-4063-ad34-8f28176d541d)
+
+---
+
+Valmistelin muutokset komennoilla ` $ git add .` ja `$ git commit -m "joonaksen testi"` , joiden jälkeen lähdin puskemaan muutoksia Thomaksen GitHubiin.
+
+Yritin tätä komennolla `$ git push` sekä `$ git push git@github.com:ThomasHelminen/winter-management.git` mutta emme saaneet pushia toimimaan. Saimme erroria että "permission denied" ja "could not read from remote repository". Pähkäilimme asian kanssa hetken aikaa, tarkistimme Thomaksen GitHubista oikeudet ja yritimme säätää SSH-asetuksia minun koneella Windows Powershellissä adminina `$ Start-Service ssh-agent` , jolla käynnistimme SSH-agentin uudelleen. Etsimme verkosta ohjeita ja kokeilimme GitHubin ohjetta _"Generating a new SSH key and adding it to the ssh-agent"_ , jonka avulla loimme minulle kokonaan uuden avainparin Windows terminalissa. Lisäsimme näistä yksityisen avaimeni Windows Powerhsellissä SSH-agenttiin komennolla `$ ssh-add C:\Users\minä/.ssh/testiavain` . (GitHub, s.a.) 
+
+Emme kuitenkaan tälläkään saaneet pushia onnistumaan. 
+
+`Alla: Epäonnistunut yritys puskea muutokset Thomaksen GitHubiin...`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/0e0ace8d-a715-4e8f-af87-bcd9a89fe384)
+
+## g) Vapaaehtoinen: Se toinen järjestelmä
+
+
+
+
+
+
+
 
 
 
