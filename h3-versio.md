@@ -62,7 +62,8 @@ Sitten itse kloonaamiseen. Käytin ensin komentoa `$ git version` tarkistamaan, 
 
 `Alla: Onnistunut kansion kloonaus koneelle.`
 
-![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5f754162-61f9-4fba-854a-18ec00eea161)
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/b305b031-128d-4d39-b18a-6c3a357f1c03)
+
 
 ---
 
@@ -80,7 +81,7 @@ Lähdin tekemään muutoksia muokkaamalla readme-tiedostoa komennolla `$ nano RE
 
 Sitten itse showtime, eli muutoksien puskeminen GitHubiin. Ihan monnina yritin ajaa aluksi komennon `$git commit` , mutta eihän se toimi koska en ole syöttänyt käyttäjänimeäkään vielä. Tästä Git ohjeistaakin minua käyttämään --global user.name-komentoa, jolla voin sellaisen itselleni luoda. Ajoin komennon `$ git config --global user.name "winukka"` . Pistin hieman tyhmän nimen tässä kohtaa, mutta se muokataan myöhemmässä vaiheessa. Lisäsin vielä "sähköpostiosoitteenkin" komennolla `$ git config --global user.email joonas@windows.com`. Kyseessä ei ole mikään oikea säpo-osoite, vaan pistin vaan lähinnä sellaisen josta tunnistan itseni ja käyttöjärjestelmäni. 
 
-Sitten ajoin komennon `$git add .` , joka lisää kaikki tehdyt muutokset uuteen välitilaan. Sitten komennolla `$git commit -m "muokattu 8nov23 1001` teen commitin välitilasta. (eli käytännössä valmistelen välitilan valmiiksi jotta se voidaan puskea/tallentaa GitHubiin). -m lisää haluamani kommentin tilanteesta. Sitten pusken muutoksen komennolla `$git push main` , joka puskee muutokset main-branchiin, jossa yleisesti kaikki tiedostoni sijaitsevat varaston sisällä. Kävin GitHubissa katsomassa, ja muutokset olivat onnistuneet.
+Sitten ajoin komennon `$git add .` , joka lisää kaikki tehdyt muutokset uuteen branchin tilaan. Sitten komennolla `$git commit -m "muokattu 8nov23 1001` teen commitin tilasta. (eli käytännössä valmistelen branchin nykyisen tilan valmiiksi jotta se voidaan puskea/tallentaa GitHubiin). -m lisää haluamani kommentin tilanteesta. Sitten pusken muutoksen komennolla `$git push main` , joka puskee muutokset main-branchiin, jossa yleisesti kaikki tiedostoni sijaitsevat varaston sisällä. Kävin GitHubissa katsomassa, ja muutokset olivat onnistuneet.
 
 Halusin vielä tehdä uuden muutoksen lisäämällä täysin uuden tiedoston. Loin kokonaan uuden tekstitiedoston komennolla `$ nano pushday.txt` . Lisäsin sinne tekstiä, jossa kerron ajavani muutokset GitHubiin. Tiedoston tallennus samalla tavalla kuin ylemmässä kohdassa ctrl + o ja ctrl + x. Sitten taas `$git add .` , `$git commit -m "yritetään puskea pushday webbiin"` ja lopulta `$ git push main.`
 
@@ -108,13 +109,30 @@ Lähdin tekemään tyhmää muokkausta Gitiin. Päätin muokata aiemman luomaani
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/81506678-1d5e-4454-9cea-af17107183ee)
 
-Onneksi tilanne huomataan, ja siitä ei aiheudu haittaa koska emme ole puskeneet sitä GitHubiin. Tarkistan komennolla `$ cat pushday.txt` että tyhmä muutos on vielä tiedostossa. Tämän jälkeen käytän komentoa `$ git reset --hard` , joka nollaa kaikki muutokset viimeisimpään välitilaan (branch). Tarkistan tämän jälkeen pushday tiedoston uudelleen komennolla `$ cat pushday.txt` , ja huomaan että muutokset ovat nollaantuneet.
+Onneksi tilanne huomataan, ja siitä ei aiheudu haittaa koska emme ole puskeneet sitä GitHubiin. Tarkistan komennolla `$ cat pushday.txt` että tyhmä muutos on vielä tiedostossa. Tämän jälkeen käytän komentoa `$ git reset --hard` , joka nollaa kaikki muutokset viimeisimpään branchin tilaan. Tarkistan tämän jälkeen pushday tiedoston uudelleen komennolla `$ cat pushday.txt` , ja huomaan että muutokset ovat nollaantuneet.
 
-Alla: Tyhmä muokkaus ja sen nollaaminen. Nollauksen päätteeksi muokkausta ei enää ole. 
+`Alla: Tyhmä muokkaus ja sen nollaaminen. Nollauksen päätteeksi muokkausta ei enää ole.`
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/87de8258-cb29-4b61-8fb1-d4f16dc54034)
 
 ## d) Tukki
+
+Tässä tehtävässä lähdin tarkastelemaan lokiani. Lokin avaamiseen on hyvin helppo komento, ja se kuuluu näin: `$ git log`. Sillä pääsee näkemään lokin, jossa näkyy eri vaiheissa tallennetut branchit. 
+
+Lokia lukiessani huomasin, että sitä luetaan alhaalta ylöspäin, jossa vanhimmat muutokset ovat aina alimpana. Huomasin että minulla on 3 branchin committia tallennettuna. Ensimmäisen nimi on initial commit, ja authorina näkyy GitHub-käyttäjätunnukseni. En muista kirjoittaneeni kumpaakaan näistä, ja aikaleimasta päätellen oletan tämän tulleen automaattisesti silloin kun olen kloonannut varaston GitHubista koneelleni. Tämän jälkeenhän vasta asetin käyttäjänimeni, ja seuraavassa branchissa huomaan että authorina toimii asettamani käyttäjänimi "winukka", ja asettamani sähköpostiosoite. Minulla on vielä yksi commit tallenettuna lokissa, ja se on viimeisin jossa puskin pushday-tiedostoni GitHubiin. 
+
+Itse lokista voidaan huomata että se tallentaa jokaisen commitin ja antaa sille tietynlaisen ID-numeron heti commitin perään. Commitin tiedoissa näkyy authorin nimi ja sähköpostiosoite, sekä tarkka aikaleima päivämäärällä ja oikealla aikavyöhykkeellä. Näiden alla näkyy commitin message, jonka käyttäjä on lisännyt. 
+
+Halusin vaihtaa winukka käyttäjänimen, joten ajoin komennon `$ git config --global user.name "joonas"` , joka muuttaa käyttäjätunnukseni. Tarkastan vielä muutoksen komennolla `$ git config user.name` , joka vastaa nykyisellä käyttäjänimelläni. (Screen, 2020) Huomaan kuitenkin, että vaikka ajan `$ git log` -komennon uudelleen, commiteissa näkyy kuitenkin vielä vanha käyttäjänimi, joka on ihan loogista. Lokeissahan on tärkeää se, että tallennettuja tietoja ei voi jälkikäteen peukaloida. 
+
+Alla: Lokitiedostojen tarkastelua, ja käyttäjätunnuksen vaihtaminan ja varmistaminen. 
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/1ce09434-fc39-448b-9386-17df28156e54)
+
+## e) Vapaaehtoinen: yhteistyötä
+
+
+
 
 
 
