@@ -169,6 +169,33 @@ Emme kuitenkaan tälläkään saaneet pushia onnistumaan.
 
 ## g) Vapaaehtoinen: Se toinen järjestelmä
 
+Lähdin kokeilemaan Gittiä Debian 12 "Bookworm"-virtuaalikoneella, jonka loin tehtävässä H1. Avasin koneen Virtualboxissa ja kirjauduin sisään käyttäjälleni. Siirryin heti terminaliin, jossa ajoin päivitykset komennolla `$ sudo apt update && sudo apt upgrade` . Tämän jälkeen loin uuden kansion kotihakemistooni komennolla `$ mkdir github` , ja siirryin kansioon komennolla `$ cd github` .
+
+Tämän jälkeen lähdin noudattamaan samaa kaavaa, mitä tämän tehtävän ensimmäisissä kohdissa. Loin uuden avainparin komennolla `$ ssh-keygen -o -t rsa`
+
+`Alla: Avainparin luonti.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/c34537fd-12be-4a81-8cfd-eec753d79323)
+
+---
+
+Sitten lisäsin avaimen GitHubissa winterclassic-varastolleni kuten aikaisemmin. Valitsin yläpalkista oikealta ensimmäisenä "settings", josta pääsin varastoni asetuksiin. Valitsin sieltä vasemmalta alhaalta "Security" alaotsikosta "Deploy keys", jossa syötin avaimeni valitsemalla oikealta ylhäältä löytyvän "Add deploy key"-kohdan. Tämän jälkeen avain näkyi listattuna asetuksissa. Valitsin vielä että "allow write access".
+
+`Alla: Julkisen avaimen lisääminen GitHubiin`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/33d4836f-df34-4ae3-8d8c-c206d352134d)
+
+---
+
+Sitten testaamaan että toimiiko. Ja ai niin, eihän meillä ole Gittiäkään vielä :D Korjataan asia komennolla `$ sudo apt install git` . Tarkistan asennuksen version komennolla `$ git -v` . Saan vastaukseksi "git version 2.39.2".
+
+Avaan SSH yhteyden GitHubiin komennolla `$ ssh -T git@github.com` . Sen jälkeen 
+
+
+
+
+
+
 
 
 
