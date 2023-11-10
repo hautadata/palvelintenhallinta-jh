@@ -2,7 +2,7 @@
 
 Tein tehtävää koululla keskiviikkona 8.11. ja perjantaina 10.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjäjestelmä. 
 
-Tehtäviä on tehty yhdessä Thomas Helmisen ja Essi Krakaun kanssa. 
+Tehtäviä on tehty yhdessä [Thomas Helmisen](https://github.com/ThomasHelminen) ja [Essi Krakaun](https://github.com/esskra) kanssa. 
 
 ## a) Online. Tee uusi varasto GitHubiin.
 
@@ -81,7 +81,7 @@ Lähdin tekemään muutoksia muokkaamalla readme-tiedostoa komennolla `$ nano RE
 
 Sitten itse showtime, eli muutoksien puskeminen GitHubiin. Ihan monnina yritin ajaa aluksi komennon `$git commit` , mutta eihän se toimi koska en ole syöttänyt käyttäjänimeäkään vielä. Tästä Git ohjeistaakin minua käyttämään --global user.name-komentoa, jolla voin sellaisen itselleni luoda. Ajoin komennon `$ git config --global user.name "winukka"` . Pistin hieman tyhmän nimen tässä kohtaa, mutta se muokataan myöhemmässä vaiheessa. Lisäsin vielä "sähköpostiosoitteenkin" komennolla `$ git config --global user.email joonas@windows.com`. Kyseessä ei ole mikään oikea säpo-osoite, vaan pistin vaan lähinnä sellaisen josta tunnistan itseni ja käyttöjärjestelmäni. 
 
-Sitten ajoin komennon `$git add .` , joka lisää kaikki tehdyt muutokset uuteen branchin tilaan. Sitten komennolla `$git commit -m "muokattu 8nov23 1001` teen commitin tilasta. (eli käytännössä valmistelen branchin nykyisen tilan valmiiksi jotta se voidaan puskea/tallentaa GitHubiin). -m lisää haluamani kommentin tilanteesta. Sitten pusken muutoksen komennolla `$git push main` , joka puskee muutokset main-branchiin, jossa yleisesti kaikki tiedostoni sijaitsevat varaston sisällä. Kävin GitHubissa katsomassa, ja muutokset olivat onnistuneet.
+Sitten ajoin komennon `$git add .` , joka lisää kaikki tehdyt muutokset uuteen branchin tilaan. Sitten komennolla `$git commit -m "muokattu 8nov23 1001` teen commitin tilasta. (eli käytännössä valmistelen branchin nykyisen tilan valmiiksi jotta se voidaan puskea/tallentaa GitHubiin). -m lisää haluamani kommentin tilanteesta. Sitten pusken muutoksen komennolla `$git push main` , joka puskee muutokset main-branchiin, jossa yleisesti kaikki tiedostoni sijaitsevat varaston sisällä. (FreeCodeCamp, 2020) Kävin GitHubissa katsomassa, ja muutokset olivat onnistuneet.
 
 Halusin vielä tehdä uuden muutoksen lisäämällä täysin uuden tiedoston. Loin kokonaan uuden tekstitiedoston komennolla `$ nano pushday.txt` . Lisäsin sinne tekstiä, jossa kerron ajavani muutokset GitHubiin. Tiedoston tallennus samalla tavalla kuin ylemmässä kohdassa ctrl + o ja ctrl + x. Sitten taas `$git add .` , `$git commit -m "yritetään puskea pushday webbiin"` ja lopulta `$ git push main.`
 
@@ -189,7 +189,45 @@ Sitten lisäsin avaimen GitHubissa winterclassic-varastolleni kuten aikaisemmin.
 
 Sitten testaamaan että toimiiko. Ja ai niin, eihän meillä ole Gittiäkään vielä :D Korjataan asia komennolla `$ sudo apt install git` . Tarkistan asennuksen version komennolla `$ git -v` . Saan vastaukseksi "git version 2.39.2".
 
-Avaan SSH yhteyden GitHubiin komennolla `$ ssh -T git@github.com` . Sen jälkeen 
+Avaan SSH yhteyden GitHubiin komennolla `$ ssh -T git@github.com` . Sen jälkeen siirryin haluamaani kansioon, ja yritin kloonata varastoni. Nappasin GitHubista varaston ssh-kloonausosoitteen, ja käytin komentoa ` $ git clone git@github.com:hautadata/winterclassic.git` . Sain kuitenkin erroria, että "Permission denied (publickey)".
+
+Hiffasin heti että kyse voisi olla avaimien kansiosta. Luodessani avainta ssh-keygen ehdotti /home/joonas/.ssh/-kansiota, ja sinne luulinkin avaimien päätyvän. Huomasin kuitenkin että avaimet olivat nykyisessä kansiossani, ja koko /.ssh-kansiota ei ollut olemassakaan.
+
+Loin sen komennolla `$ mkdir /joonas/.ssh/` , ja siirsin tiedostot komennolla `$ mv debiankey debiankey.pub /home/joonas.ssh/` . Tämän jälkeen yritin git clonea uudelleen ja hommahan toimii!
+
+`Alla: Varaston kloonaus onnistunut.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/51471726-cf33-490e-b3aa-64953f10d3c0)
+
+---
+
+Siirryin kansiooni `$ cd /github/winterclassic` , ja loin uuden tiedoston `$ nano debiantesti.md` . Lisäsin siihen tekstiä ja tallensin sen ctrl + o ja ctrl + x. 
+
+`Alla: Uusi tiedosto.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/017fd0e8-ae03-4d31-bac2-9476a25015a0)
+
+---
+
+Sitten totuuden hetki, yritetään puskea muutos GitHubiin. Komennot `$ git add .` , `$ git commit -m "debianin pusku"` ja lopulta `$ git push` . Terminalissa tulee ainakin onnistunut palaute. Katson vielä lokin `$ git log` , ja branch on ainakin tallentunut. Ei kai auta muuta kuin hypätä selaimeen, ja ottaa selvää. 
+
+Siellähän se tiedosto näkyy, puskettuna suoraan Debian 12-virtuaalikoneelta. 
+
+`Alla: Homma pelaa.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/81d808c3-5ef9-4162-886a-8a0f0d49e575)
+
+## Lähteet
+
+FreeCodeCamp. 3.1.2020. The Git Push Command Explained. Luettavissa: https://www.freecodecamp.org/news/the-git-push-command-explained/. Luettu: 10.11.2023.
+
+GitHub. s.a. Generating a new SSH key and adding it to the ssh-agent. Luettavissa: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent. Luettu: 10.11.2023. 
+
+Git. s.a. Download for Windows. Luettavissa: https://git-scm.com/download/win. Luettu: 8.11.2023. 
+
+Karvinen, T. 13.10.2023. Infra as Code 2023. Luettavissa: https://terokarvinen.com/2023/configuration-management-2023-autumn/. Luettu: 8.11.2023. 
+
+Screen, C. 23.4.2020. How to show or change your Git username or email address from terminal. Luettavissa: https://www.aicg.com/blog/how-to-show-or-change-your-git-username-or-email-address-from-terminal/. Luettu: 10.11.2023 
 
 
 
