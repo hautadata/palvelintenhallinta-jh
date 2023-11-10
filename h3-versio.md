@@ -57,7 +57,8 @@ Tämän jälkeen lähdin asentamaan Gitiä, sillä sitä minulla ei vielä ollut
 
 Latauksessa kesti n. puoli minuuttia, jonka jälkeen lähdin ajamaan sitä ja valitsemaan Gitin. Sain pitkän liudan kysymyksiä SSH client programista aina git pull-komennon toimintoon. Menin kaikki kysymykset vakiovastauksilla, paitsi tekstieditorin kohdassa muutin vimin Windowsin omaan notepad.exeen. Etenin kysymyksissä kunnes kaikkiin oli vastattu ja Git Bash oli asennettu. 
 
-Sitten itse kloonaamiseen. Käytin ensin komentoa `$ git version` tarkistamaan, että git asentui onnistuneesti. Vastaus oli "git version 2.42.0.windows.2", joten ok! Sitten kloonasin kansioni koneelleni komennolla `$git clone git@github.com:hautadata/winterclassic.git `.
+Sitten itse kloonaamiseen. Käytin ensin komentoa `$ git version` tarkistamaan, että git asentui onnistuneesti. Vastaus oli "git version 2.42.0.windows.2", joten ok! Sitten kloonasin kansioni koneelleni komennolla
+``$git clone git@github.com:hautadata/winterclassic.git``
 
 `Alla: Onnistunut kansion kloonaus koneelle.`
 
@@ -73,7 +74,26 @@ Git clone jälkeen tulevan uniikin ssh-linkin löytää GitHubista haluamasta va
 
 ---
 
-Tajusin hieman hävettyneenä että tein juuri kloonauksen vielä Windowsin terminalissa vaikka asensin jo Gitin. Vaihdoin sinne avaamalla Git Bash-sovelluksen.
+Tajusin hieman hävettyneenä että tein juuri kloonauksen vielä Windowsin terminalissa vaikka asensin jo Gitin. Vaihdoin sinne avaamalla juuri asentuneen Git Bash-sovelluksen. Yhdistin varastoon SSH-yhteydellä komennolla `$git ssh -T git@github.com` . Navigoin oikeaan kansioon komennolla `$ cd /github/h3winter` , jossa ajoin komennon `$ ls` , jolla listasin tiedostot ja totesin että kloonaus on todellakin onnistunut. 
+
+Lähdin tekemään muutoksia muokkaamalla readme-tiedostoa komennolla `$ nano README.md` , ja lisäsin sinne hieman tekstiä että muokkaan tiedostoa Git Bashilla Windowsilla. Tallensin muutokset nanossa pikanäppäimillä ctrl + o , joka pyytää vahvistamaan muutokset tiedostoon ja sitten poistuin nanosta komennolla ctrl + x.
+
+Sitten itse showtime, eli muutoksien puskeminen GitHubiin. Ihan monnina yritin ajaa aluksi komennon `$git commit` , mutta eihän se toimi koska en ole syöttänyt käyttäjänimeäkään vielä. Tästä Git ohjeistaakin minua käyttämään --global user.name-komentoa, jolla voin sellaisen itselleni luoda. Ajoin komennon `$ git config --global user.name "winukka"` . Pistin hieman tyhmän nimen tässä kohtaa, mutta se muokataan myöhemmässä vaiheessa. Lisäsin vielä "sähköpostiosoitteenkin" komennolla `$ git config --global user.email joonas@windows.com`. Kyseessä ei ole mikään oikea säpo-osoite, vaan pistin vaan lähinnä sellaisen josta tunnistan itseni ja käyttöjärjestelmäni. 
+
+Sitten ajoin komennon `$git add .` , joka lisää kaikki tehdyt muutokset uuteen välitilaan. Sitten komennolla `$git commit -m "muokattu 8nov23 1001` teen commitin välitilasta. (eli käytännössä valmistelen välitilan valmiiksi jotta se voidaan puskea/tallentaa GitHubiin). -m lisää haluamani kommentin tilanteesta. Sitten pusken muutoksen komennolla `$git push main` , joka puskee muutokset main-branchiin, jossa yleisesti kaikki tiedostoni sijaitsevat varaston sisällä. Kävin GitHubissa katsomassa, ja muutokset olivat onnistuneet.
+
+Halusin vielä tehdä uuden muutoksen lisäämällä täysin uuden tiedoston. Loin kokonaan uuden tekstitiedoston komennolla `$ nano pushday.txt` . Lisäsin sinne tekstiä, jossa kerron ajavani muutokset GitHubiin. Tiedoston tallennus samalla tavalla kuin ylemmässä kohdassa ctrl + o ja ctrl + x. Sitten taas `$git add .` , `$git commit -m "yritetään puskea pushday webbiin"` ja lopulta `$ git push main.`
+
+`Alla: pushday.txt-tiedoston muokkausta nanolla.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/4d9c7ca4-67b2-4cb0-af28-f3be0023e0eb)
+
+---
+
+``Alla: Onnistuneet muutokset GitHubissa. (Kuva otettu 2pv myöhemmin perjantaina)``
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e23171a6-ebf0-464d-b765-41535e0da202)
+
 
 
 
