@@ -102,7 +102,23 @@ Halusin vielä tehdä uuden muutoksen lisäämällä täysin uuden tiedoston. Lo
 
 ## c) Doh!
 
-Lähdin tekemään tyhmää muokkausta Gitiin. 
+Lähdin tekemään tyhmää muokkausta Gitiin. Päätin muokata aiemman luomaani pushday-tiedostoa ja lisätä sinne mukamas yrityksen luottokortin numeron plaintextinä. Tämän tein komennolla `$ nano pushday.txt` , jossa kirjoitin muutoksen ja tallensin sen ctrl + o ja ctrl + x. 
+
+`Alla: Tyhmä muutos pushday-tiedostoon.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/81506678-1d5e-4454-9cea-af17107183ee)
+
+Onneksi tilanne huomataan, ja siitä ei aiheudu haittaa koska emme ole puskeneet sitä GitHubiin. Tarkistan komennolla `$ cat pushday.txt` että tyhmä muutos on vielä tiedostossa. Tämän jälkeen käytän komentoa `$ git reset --hard` , joka nollaa kaikki muutokset viimeisimpään välitilaan (branch). Tarkistan tämän jälkeen pushday tiedoston uudelleen komennolla `$ cat pushday.txt` , ja huomaan että muutokset ovat nollaantuneet.
+
+Alla: Tyhmä muokkaus ja sen nollaaminen. Nollauksen päätteeksi muokkausta ei enää ole. 
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/87de8258-cb29-4b61-8fb1-d4f16dc54034)
+
+## d) Tukki
+
+
+
+
 
 
 
