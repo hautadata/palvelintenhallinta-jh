@@ -90,9 +90,19 @@ Halusin vielä tehdä uuden muutoksen lisäämällä täysin uuden tiedoston. Lo
 
 ---
 
-``Alla: Onnistuneet muutokset GitHubissa. (Kuva otettu 2pv myöhemmin perjantaina)``
+`Alla: Pushdayn muutoksien puskeminen GitHubiin.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e934f0c2-d21b-41e5-8ff1-bb2fe410e9c9)
+
+-
+
+`Alla: Onnistuneet muutokset GitHubissa. (Kuva otettu 2pv myöhemmin perjantaina)`
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e23171a6-ebf0-464d-b765-41535e0da202)
+
+## c) Doh!
+
+Lähdin tekemään tyhmää muokkausta Gitiin. 
 
 
 
