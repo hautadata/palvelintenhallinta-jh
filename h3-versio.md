@@ -1,6 +1,6 @@
 # H3 - Versio
 
-Tein tehtävää koululla keskiviikkona 8.11. ja perjantaina 10.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjäjestelmä. 
+Tein tehtävää koululla keskiviikkona 8.11. ja perjantaina 10.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä. 
 
 Tehtäviä on tehty yhdessä [Thomas Helmisen](https://github.com/ThomasHelminen) ja [Essi Krakaun](https://github.com/esskra) kanssa. 
 
