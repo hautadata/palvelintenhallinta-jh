@@ -73,7 +73,35 @@ Mielenkiintoisena tässä huomasin sen, että succeeded-kohdassa näkyy että ol
 
 ## c) Apache.
 
+Lähdin asentamaan apache2, korvaamaan testisivun ja varmistamaan että demoni pyörii. Ja tietenkin käsin alkuun! Kirjauduin ulos herralta komennolla `exit` , ja otin yhteyden t001 orjaan komennolla `$ vagrant ssh t001` . Olin sitten sisällä orjassa numero 1. Lähdin alkuun katsomaan mikä tilanne apache2 kanssa komennolla `$ sudo systemctl status apache2`. Oho, meillähän on se jo asennettuna aiemman tehtävän tiimoilta!
 
+Poistetaan se siten komennolla `$ sudo apt-get remove apache2` . (Ask Ubuntu s.a.) Sitten asennetaan se takaisin komennolla `$ sudo apt-get install apache2` . Komento pyörii, sitten katsotan tilanne sen suhteen uudelleen komennolla `$ sudo systemctl status apache2`. Status näyttää aktiivista, joten asennus onnistunut.
+
+Sitten siirrytään Apachen hakemistoon komennolla `$ cd /var/www/html` , ja poistetaan index.html komennolla `$ rm index.html` . Sitten tilalle uusi tiedosto komennolla `$ sudo nano korvaaja.txt` . Lisään sinne tekstiä, tallennan ja katson `$ ls` ja `$ cat korvaaja.txt` -komennoilla että homma pelittää. Ja pelittäähän se!
+
+`Alla: Index.html poistaminen ja uuden tiedoston luonti sen tilalle, käsin.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/05ba3e5c-2cb5-4a6b-b446-7154e19c3615)
+
+---
+
+Sitten katsotaan se demonin käynnistys. No sitähän tässä tehtiin jo ylempänäkin, sillä systemctl status-komennolla sen näkee aika helposti eikä tarvitse lähteä kikkailemaan demonilistojen ja ID-lukujen kanssa. Vai olisiko se juuri sitä mitä Tero haluaa :D 
+
+Noh, tehdään se helposti. Komennolla `$ sudo systemctl status apache2 | grep "Active"` saamme printattua statuksesta pelkän aktiivisuusstatuksen, joka tässä tapauksessa näyttää että demoni on aktiivinen.
+
+`Alla: Ylläolevan komennon ajo ja lopputulos`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/abbfc45a-7372-445a-8ed3-0676b519b738)
+
+---
+
+
+
+
+ 
+## Lähteet.
+
+https://askubuntu.com/questions/176964/permanently-removing-apache2
 
 
 
