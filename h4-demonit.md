@@ -45,6 +45,38 @@ Tallensin tiedoston komennoilla ctrl + o ja ctrl + x, jonka jälkeen lähdin tes
 
 ---
 
+## b) Top.
+
+Tässä tehtävässä lähdin tekemään tiedostoa top.sls, joka ajaa tilat automaattisesti. Tämä tehtävä oli tuttu jo h2:sta, joten osasin tehdä tämän helposti. Aloin muokkaamaan top.sls-tiedostoa komennolla `$ sudo nano /srv/salt/top.sls` , joka avasi tiedoston. Varmistin että siellä on oikea koodinpätkä, eli haluamani:
+
+```
+base:
+  '*':
+    - hello
+```
+
+`Alla: Tiedoston muokkausta.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/23df4a1a-44e1-495f-9ec4-fd42f620e67a)
+
+---
+
+Tämän jälkeen suljin editorin jälleen komennoilla ctrl + o ja ctrl + x, ja lähdin ajamaan tilaa! Tein tämän komennolla `$ sudo salt '*' state.apply` , jossa meidän ei nyt siis ylläolevan top.sls-tiedoston mukaisesti tarvitse kutsua erikseen minkään nimistä moduulia.
+
+`Alla: Tilan ajaminen onnistuneesti pelkällä state.apply-tilalla.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5c23b885-39fd-4f99-89ed-2f4c6ad38827)
+
+--- 
+
+Mielenkiintoisena tässä huomasin sen, että succeeded-kohdassa näkyy että olemme tehneet taas muutoksen (changed= 1), vaikka olemme ajaneet juuri aiemmin täysin saman tilan. Uskoisin tämän johtuvan siitä, että itse echo tulee joka kerralla omana komentona ja ei tallennu käytännössä mihinkään josta salt voisi sen tarkistaa, ja se haluaa kuitenkin ilmoittaa muutoksen tapahtuneena siinä, mitä tila on saanut aikaan. 
+
+## c) Apache.
+
+
+
+
+
 
 
 
