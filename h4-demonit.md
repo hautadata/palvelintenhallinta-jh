@@ -95,6 +95,48 @@ Noh, tehdään se helposti. Komennolla `$ sudo systemctl status apache2 | grep "
 
 ---
 
+Sitten se hauska osuus, eli automatisointi. Poistetaan vielä orjalla tuo apache uudelleen komennolla `$ sudo apt-get remove apache2` ja poistutaan koneelta exitillä. Kirjaudutaan takaisin herralle komennolla `$ ssh tmaster` ja aletaan muokkaamaan tilatiedostoa. Menen helpolla ja muokkaan jo valmista init.sls tiedostoa komennolla `$ sudo nano /srv/salt/hello/init.sls` . Teen 4 funktiota, joista ensimmäinen lataa apache2, toinen poistaa index.html, kolmas luo uuden .html-tiedoston tilalle, ja viimeinen tarkistaa demonin tilan. Tässä naurettavan yksinkertainen kokonaisuus:
+
+```
+apache2asennus:
+  pkg.installed:
+    - name: apache2
+
+index_ulos:
+  file.absent:
+    - name: /var/www/html/index.html
+
+tilalle:
+  file.managed:
+    - name: /var/www/html/automatisoitukorvaaja.html
+
+demonitoimii:
+  cmd.run:
+   - name: sudo systemctl status apache2 | grep "Active"
+```
+
+`Alla: Kuvana vielä sama init.sls-tiedostoa muokatessa.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/4ee8bf84-0c5a-44d5-b02a-bdbb400833ae)
+
+---
+
+Sitten testataan toimivuutta :D Ajan komennon `$ sudo salt 't001* state.apply hello` , jolla kohdistan tilan vain t001-orjaan. Vastaukseksi saan jokaisesta kohdasta vihreätä ja lopputulokseksi succeeded: 4 (changed = 4)! Homma siis toimii ainakin näin yksinkertaisella tasolla. 
+
+`Alla: Pari kuvaa jossa näkyy tilan ajaminen ja onnistunut lopputulos!`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/869f7221-20b1-4e57-b802-40814c23fd4d)
+
+---
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/120dd4d2-c06b-41c1-8c17-f89038ed3e4d)
+
+---
+
+
+
+
+
 
 
 
