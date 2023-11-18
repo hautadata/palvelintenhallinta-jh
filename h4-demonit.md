@@ -7,7 +7,7 @@ Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. 
 ### Karvinen 2023: Salt Vagrant - automatically provision one master and two slaves
 
 ```
--Init.sls on YAML-syntaksinen tiedosto, joka toteuttaa "Infra koodina"-komentojen ajoa.
+-Init.sls on YAML-syntaksinen tiedosto, joka toteuttaa "Infra koodina"-komentojen ajoa. (Karvinen, 2023)
 -Sisennys, 2 välilyöntiä ja EI tabia!
 -Top.sls-tiedosto määrittää mitä tiloja mikäkin orja suorittaa.
 -State.apply-tilassa ei tarvitse enää erikseen nimetä mitään moduuleja. 
@@ -75,7 +75,7 @@ Mielenkiintoisena tässä huomasin sen, että succeeded-kohdassa näkyy että ol
 
 Lähdin asentamaan apache2, korvaamaan testisivun ja varmistamaan että demoni pyörii. Ja tietenkin käsin alkuun! Kirjauduin ulos herralta komennolla `exit` , ja otin yhteyden t001 orjaan komennolla `$ vagrant ssh t001` . Olin sitten sisällä orjassa numero 1. Lähdin alkuun katsomaan mikä tilanne apache2 kanssa komennolla `$ sudo systemctl status apache2`. Oho, meillähän on se jo asennettuna aiemman tehtävän tiimoilta!
 
-Poistetaan se siten komennolla `$ sudo apt-get remove apache2` . (Ask Ubuntu s.a.) Sitten asennetaan se takaisin komennolla `$ sudo apt-get install apache2` . Komento pyörii, sitten katsotan tilanne sen suhteen uudelleen komennolla `$ sudo systemctl status apache2`. Status näyttää aktiivista, joten asennus onnistunut.
+Poistetaan se siten komennolla `$ sudo apt-get remove apache2` . (Ask Ubuntu 2012) Sitten asennetaan se takaisin komennolla `$ sudo apt-get install apache2` . Komento pyörii, sitten katsotan tilanne sen suhteen uudelleen komennolla `$ sudo systemctl status apache2`. Status näyttää aktiivista, joten asennus onnistunut.
 
 Sitten siirrytään Apachen hakemistoon komennolla `$ cd /var/www/html` , ja poistetaan index.html komennolla `$ rm index.html` . Sitten tilalle uusi tiedosto komennolla `$ sudo nano korvaaja.txt` . Lisään sinne tekstiä, tallennan ja katson `$ ls` ja `$ cat korvaaja.txt` -komennoilla että homma pelittää. Ja pelittäähän se!
 
@@ -141,7 +141,7 @@ Pistän koneen käyntiin Virtualboxissa ja kirjaudun sinne sisään, sitten avaa
 
 Sitten käydään SSHd-konfiguraatiotiedoston kimppuun. Minulla ei ole openssh:ta asennettuna, joten lataan sen komennolla `$ sudo apt-get install openssh-server -y`. Sitten tsekkaan sen mukana tulleen /etc/ssh/sshd_config-konfiguraatiotiedoston. Avaan tiedoston nanolla komennolla `$ sudo nano sshd_config` , ja siellä Teron ohjeiden mukaisesti etsin ylhäältä rivin jossa lukee portti, ja portin numero.
 
-Löydän rivin jossa lukee #port 22. Poistan alusta risuaidan (koska tässähän oli kyseessä kommentti, eikä se silloin vaikuta mihinkään) ja vaihdan portin loppuosaan haluamani 1234. 
+Löydän rivin jossa lukee #port 22. Poistan alusta risuaidan (koska tässähän oli kyseessä kommentti, eikä se silloin vaikuta mihinkään) ja vaihdan portin loppuosaan haluamani 1234, kuten Teron ohjeessa. (Karvinen, 2018) 
 
 `Alla: Portin muokkaaminen sshd_config-tiedostossa.`
 
@@ -151,22 +151,32 @@ Löydän rivin jossa lukee #port 22. Poistan alusta risuaidan (koska tässähän
 
 Sitten kokeillaan kuunteleeko SSHd uutta porttiamme. Ajan Teron ohjeissa näytetyn komennon `$ sudo nc -vz localhost 1234` . Sain errorin että yhteyttä ei voitu muodostaa, ja hetken olin jumissa homman kanssa. Kokeilin myös komentoa `$ sudo nc -vz 127.0.0.1 1234` . Lopulta jouduin turvautumaan verkon ihmeelliseen maailmaan. Hävettää myöntää että jouduin etsimään näin helppoon tilanteesen apua, mutta vastaushan on service ssh restart. (Kinsta, 2023)
 
+Niinhän se menee. Ajan itselle tutumman komennon `$ sudo systemctl restart sshd.service` , jonka jälkeen tarkistan sen statuksen komennolla `$ sudo systemctl status sshd.service` . Vaikuttaa paremmalta, joten yritetään uudelleen komentoa `$ sudo nc -vz localhost 1234` ja tadaa! Hommahan toimii :D (hyvä vai huono juttu?)
 
+`Alla: Komennon ajo onnistuneesti.`
 
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/ca80db50-ea69-49db-90e9-0910b7f4e9d3)
 
+---
 
+Koitan vielä Teron sivuilla olevaa toista testitapaa, eli ssh-yhteyttä. Ajan komennon `$ ssh -p 1234 joonas@joonas-debian` , ja pääsen kirjautumaan koneelleni ssh-yhteydellä onnistuneesti portista 1234. Jes.
 
+`Alla: ssh-yhteyden testailua.`
 
-
-
-
-
-
-
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/a9717ad0-79dd-4178-8674-7922a2cd0dd6)
  
 ## Lähteet.
 
-https://askubuntu.com/questions/176964/permanently-removing-apache2
+Ask Ubuntu, 17.8.2012. (Käyttäjältä Jurgen Paul). Permanently removing apache2. Luettavissa: https://askubuntu.com/questions/176964/permanently-removing-apache2. Luettu: 17.11.2023.
+
+Karvinen, T. 13.10.2023. Infra as Code 2023. Luettavissa: https://terokarvinen.com/2023/configuration-management-2023-autumn/. Luettu: 17.11.2023.
+
+Karvinen, T. 3.4.2018. Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port Luettavissa: https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/. Luettu: 17.11.2023.
+
+Karvinen, T. 28.3.2023. Salt Vagrant - automatically provision one master and two slaves Luettavissa: https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file. Luettu: 17.11.2023.
+
+Kinsta, 9.11.2023. How to Fix the SSH “Connection Refused” Error. Luettavissa: https://kinsta.com/knowledgebase/ssh-connection-refused/. Luettu: 18.11.2023. 
+
 
 
 
