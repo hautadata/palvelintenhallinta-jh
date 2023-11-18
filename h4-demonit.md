@@ -1,6 +1,6 @@
 # H4 - Demonit 
 
-Tein tehtävää itsenäisesti reissussa perjantaina 17.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
+Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
 
 ## x) Lue ja tiivistä.
 
@@ -132,6 +132,29 @@ Sitten testataan toimivuutta :D Ajan komennon `$ sudo salt 't001* state.apply he
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/120dd4d2-c06b-41c1-8c17-f89038ed3e4d)
 
 ---
+
+## SSHouto.
+
+Tässä tehtävässä lähdin lisäämän portin, jota SSHd kuuntelee. Teron ohjeessa _Infra as Code 2023_ sanotaan että tehtävä on helpoin tehdä virtuaalikoneella, jota Vagrant ei ohjaa, joten käytän tässä tehtävässä kurssin ensimmäisessä H1 tehtävässä luotua Debian 12-virtuaalikonetta graafisella käyttöliittymällä. En tiedä onko tämä oikea tapa tehdä tehtävä, mutta teen sen nyt tällä tavalla. 
+
+Pistän koneen käyntiin Virtualboxissa ja kirjaudun sinne sisään, sitten avaan terminalin. Alkuun kaikista tärkeimmät, eli `$ sudo apt update` ja `$ sudo apt upgrade -y`. 
+
+Sitten käydään SSHd-konfiguraatiotiedoston kimppuun. Minulla ei ole openssh:ta asennettuna, joten lataan sen komennolla `$ sudo apt-get install openssh-server -y`. Sitten tsekkaan sen mukana tulleen /etc/ssh/sshd_config-konfiguraatiotiedoston. Avaan tiedoston nanolla komennolla `$ sudo nano sshd_config` , ja siellä Teron ohjeiden mukaisesti etsin ylhäältä rivin jossa lukee portti, ja portin numero.
+
+Löydän rivin jossa lukee #port 22. Poistan alusta risuaidan (koska tässähän oli kyseessä kommentti, eikä se silloin vaikuta mihinkään) ja vaihdan portin loppuosaan haluamani 1234. 
+
+`Alla: Portin muokkaaminen sshd_config-tiedostossa.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/d8da25dd-5dfb-4263-b1aa-4fe75bff67b1)
+
+---
+
+Sitten kokeillaan kuunteleeko SSHd uutta porttiamme. Ajan Teron ohjeissa näytetyn komennon `$ sudo nc -vz localhost 1234` . Sain errorin että yhteyttä ei voitu muodostaa, ja hetken olin jumissa homman kanssa. Kokeilin myös komentoa `$ sudo nc -vz 127.0.0.1 1234` . Lopulta jouduin turvautumaan verkon ihmeelliseen maailmaan. Hävettää myöntää että jouduin etsimään näin helppoon tilanteesen apua, mutta vastaushan on service ssh restart. (Kinsta, 2023)
+
+
+
+
+
 
 
 
