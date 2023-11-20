@@ -1,6 +1,6 @@
 # H4 - Demonit 
 
-Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
+Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. Viimeistelin ja hienosäädin sen lopulta aamulla maanantaina 20.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
 
 ## x) Lue ja tiivistä.
 
@@ -16,8 +16,32 @@ Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. 
 ### Salt contributors: Salt overview
 
 ```
--Vaihees
+-YAML renderöi YAML-datan Python-dataksi Saltia varten. (VMware Salt Project, s.a.)
+-Dataa käsitellään (key: value) pareilla, joissa kaksoispisteen jälkeen tulee aina 1 välityönti.
+-Ei tabeja, vaan pelkästään välilyöntejä.
+-YAML muodostuu 3:sta peruselementistä: Scalareista (joka on yksittäinen key: value-pari), listoista (joissa yhdellä key-arvolla voi olla useita value-arvoja), sekä hakemistoista (jotka voivat sisältää molempia edellämainittuja)
+-Sisennys määrittelee kontekstin, ja esim. kun listoissa tai hakemistoissa on useampia value-arvoja, ne merkataan aina ”keyn” alle viivalla ja yhdellä välilyönnillä.)
 ```
+
+### Salt Contributes: Salt States.
+
+```
+-Saltin module.function tila tarkastaa suoraan lopputuloksen. (esim. pkg.installed tarkoittaa että lopputuloksena on paketin asennus, oli se jo asennettuna tai ei) 
+-Tilaa määrittelevä tiedosto sisältää identifioijan, tilan (esim .pkg), funktion (esim .absent), nimen ja argumentit. (VMware Salt Project, s.a.)
+-Tilapuun tulisi olla helposti luettaja ja saavutettava, joten vältä liiallista erittelyä.
+-Top.sls-tiedosto sisältää halutut ohjaukset ja määritelmät siihe, mitä tiloja mitkäkin orjat ajavat.
+-SSH-tilassa Service Watch onnistuu mm. funktiolla service.running: - name: sshd - enable: True.
+```
+
+### Pkg-File-Service
+
+```
+-SSH-tilassa palvelun asennus funktiolla pkg.installed ja service watch funktiolla service.running.
+-Poista # kommentista, jossa lukee Port ja portin numero. Vaihda numero haluamaasi.
+-Pingaa SSH-porttiasi esim. nc -vz localhost (portin numero) -komennolla.
+```
+
+
 
 ## a) Hello SLS!
 
@@ -177,6 +201,9 @@ Karvinen, T. 28.3.2023. Salt Vagrant - automatically provision one master and tw
 
 Kinsta, 9.11.2023. How to Fix the SSH “Connection Refused” Error. Luettavissa: https://kinsta.com/knowledgebase/ssh-connection-refused/. Luettu: 18.11.2023. 
 
+VMware Salt Project, s.a. Salt overview. Luettavissa: https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml. Luettu: 17.11.2023.
+
+VMware Salt Project, s.a. Salt states. Luettavissa: https://docs.saltproject.io/salt/user-guide/en/latest/topics/states.html#state-modules. Luettu: 17.11.2023.
 
 
 
