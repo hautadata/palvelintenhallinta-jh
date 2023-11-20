@@ -1,6 +1,6 @@
 # H4 - Demonit 
 
-Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. Viimeistelin ja hienosäädin sen lopulta aamulla maanantaina 20.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
+Tein tehtävää itsenäisesti reissussa perjantaina 17.11. ja launtaina 18.11. Viimeistelin ja hienosäädin sen lopulta kotona aamulla maanantaina 20.11. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
 
 ## x) Lue ja tiivistä.
 
