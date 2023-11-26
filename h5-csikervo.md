@@ -197,13 +197,49 @@ Asennan sen komennolla `$ sudo apt-get install w3m` . Sen jälkeen ajan komennon
 
 ---
 
+## e) Ämpärillinen
 
+Tässä tehtävässä lähdin tekemään Salt tilan, joka asentaa kansiollisen komentoja. Lähdin tekemään sitä samalla tavalla kuin tehtävää c) mutta lisään komentoja vain enemmän. Siirryin pois t001-koneelta exitillä, ja kirjauduin takaisin herralle komennolla `$ vagrant ssh tmaster`. 
 
+Siirryn kansioon /srv/salt/, jossa teen uuden kansion komennolla `$ sudo mkdir kansiollinen`. Luon sinne 5 uutta tiedostoa komennolla `$ sudo touch temppui kikkoi vinkkei jekkui harhoi ` :D Tajuatteko, kansiollinen täynnä mm. kikkoja ja vinkkejä...
 
+Käyn jokaisen yksitellen läpi sudo nanolla, ja lisään kaikkiin pienen scriptin. Ihan simppeleitä, yksi ajaa updatet, yksi kertoo kellonajan ja jotkut vain echoavat jonkun kommentin. Näytän ne ihan tuota pikaa.
 
+Tarvitaan vielä init.sls-tiedosto komennolla `$ sudoedit init.sls` . Lisään sinne c) tehtävän kaavan mukaisesti tiedostoja ja niiden sourceja sekä oikeuksia. 
 
+`Alla: init.sls-tiedoston muokkausta.`
 
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/d3094bbe-341f-43af-8ee1-825047e2224b)
 
+---
+
+Sitten testailemaan. Ajetaan salt-tila ykkösorjalla komennolla `$ sudo salt 't001¨' state.apply kansiollinen` . Hyvältä näyttää, saamme pelkkää vihreää ja succeeded = 5. 
+
+`Alla: Tilan ajo onnistuneesti kahdessa kuvakaappauksessa.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/77026f72-fd1a-4d58-b59e-132021a0ce62)
+
+---
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/0b946cbc-b540-43f4-a5ae-6ae3a3345b20)
+
+---
+
+Listataan seuraavaksi /usr/local/bin ja varmistetaan että tiedostot löytyvät orjakoneelta. Tämä komennolla `$ sudo salt 't001¨' cmd.run 'ls /usr/local/bin'` . Vastauksena saan kaikki haluamani tiedostot. Toimii!
+
+`Alla: /usr/local/bin listaus.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/2b50df31-26bb-4ffe-913d-7564058d88c8)
+
+---
+
+Yritetään vielä ajaa tiedostot yksitellen, ja katsotaan mitä saadaan tulokseksi. Ajan komennon `$ sudo salt 't001¨' cmd.run 'bash vinkkei'` 5 kertaa vaihtamalla jokaisella kerralla lopussa olevan tiedoston nimen. Lopputuloksena saan kaikki tiedostot ajettua, jopa apt-get update toimii moitteettomasti. Let's go!
+
+`Alla: Komentojen ajo yksitellen.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/49f04adf-b47b-4558-8172-100af3105629)
+
+---
 
 ## Lähteet
 
