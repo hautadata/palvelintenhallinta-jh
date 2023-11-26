@@ -41,6 +41,40 @@ Seuravaaksi ajan samaisen komennon myös kotihakemistossani. Siirryn sinne komen
 
 ## b) Gui2fs
 
+Tässä tehtävässä lähdin tekemään muutoksia jollain graafisen käyttöliittymän sovelluksella, ja sen jälkeen katsomaan löydänkö tekemäni muutokset tiedostotasolla. Yritin alkuun muokata Weather-sovelluksessa näkyviä kaupunkeja, ja toivovani että kaupungit ilmestyisivät konfiguraatiotiedostoihin mutta lukuisten muokkausten ja ` $ find -printf "%T+ %p\n"|sort` -komentojen jälkeen eksyin /usr/bin/gnome-weather tiedostoon joka oli linkki toiseen hakemistoon osoitteessa ../share/org.gnome.Weather./org.gnome.Weather , josta taas löytyi erilaisia src.- ja data.gresource-tiedostoja, joita tutkiessa ne olivat täynnä JavaScript stringejä, jolloin luovutin ja valitsin jonkun helpomman sovelluksen.
+
+Päädyin Contacts-sovellukseen, jonne pystyin itse lisätä omia yhteystietojani. Päätin lisätä sinne tämän kurssin mainion opettajan eli itse Teron! Avasin sovelluksen, ja valitsin plus-nappulasta "create new contact".
+
+`Alla: Uuden yhteystiedon luominen.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/600a0bb7-1309-4613-b4b3-5e03fda65299)
+
+---
+
+Tämän jälkeen ajan jo aiemmin käytetyn komennon ` $ find -printf "%T+ %p\n"|sort` jotta näen viimeisimmät muutokset. Näen alimpana addressbookin sisältävän polun ja olen varma että muutokseni on tapahtunut siellä. 
+
+`Alla: Komennon ajo, ja viimeisimmät muutokset.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/4f55f669-cb56-444a-b5b7-bae514e82288)
+
+---
+
+Siirryn siinä osoitettuun hakemistoon komennolla ` $ cd ./joonas/.local/share/evolution/addressbook/system` . Siellä ajan uudestaan komennon ` $ find -printf "%T+ %p\n"|sort` jolla toivon näkeväni että missä muutos on tapahtunut. Huomaan, että muutosta on tapahtunut contacts.db nimisessä tiedostossa, ja sieltä löydänkin varmasti tekemäni muutokset.
+
+`Alla: find-komennon ajo uudestaan yhteystietojen hakemistossa.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e6d735f2-11c4-4b82-be8b-11bceccbeb7c)
+
+---
+
+Seuraavaksi ajan komennon `$ cat concacts.db` , ja huomaankin heti alimpana että Teron tietoja on päivittynyt kyseiseen .db, eli database tiedostoon. Jes!
+
+`Alla: Aiemmin lisäämäni Teron tiedot`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/1c92a823-cad6-4dc5-88a3-e8461a6a601b)
+
+## c) Komennus
+
 
 
 ## Lähteet
