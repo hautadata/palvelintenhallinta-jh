@@ -133,6 +133,76 @@ Näyttää olevan, joten lopuksi ajetaan se komennolla `$ sudo salt 't001' cmd.r
 
 ---
 
+## d) Apassi
+
+Tässä tehtävässä lähdin tekemään Salt-tilaa, joka asentaa Apachen näyttämään kotihakemistoja. Käytin apuna aiemmissakin tehtävissä mainitsemaa Teron artikkelia _Apache User Homepages Automatically – Salt Package-File-Service Example_. 
+
+Siirryin hakemistoon /srv/salt/ komennolla `$ cd /srv/salt/` , jossa loin apache2-hakemiston komennolla `$ sudo mkdir apache2` . Loin siellä kissa.html nimisen tiedoston komennolla `$ sudo nano kissa.html` . Tämä tiedosto tulee toimimaan apache2 index.html-sivuna. Lopussa ajamme Salt tilan, joka käyttää tätä tiedostoa index.html sourcena. (Normaalistihan index.html on se oletustiedosto apache2:ssa) Lisäsin kissa-html-tiedostoon todella pienen html-tekstipätkän :D
+
+`Alla: kissa.html sisältö`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/64c924b4-9f3c-4104-aa56-20e5091e12d6)
+
+---
+
+Seuraavaksi tarvitaan init.sls-tiedosto. Luodaan se komennolla `$ sudoedit init.sls` . Lisäsin sinne yllä mainitussa Teron ohjeessa käytetyn komentopätkän, jossa vaihdoin tiedoston nimet omaksi: 
+
+```
+apache2:
+ pkg.installed
+/var/www/html/index.html:
+ file.managed:
+   - source: salt://apache2/kissa.html
+/etc/apache2/mods-enabled/userdir.conf:
+ file.symlink:
+   - target: ../mods-available/userdir.conf
+/etc/apache2/mods-enabled/userdir.load:
+ file.symlink:
+   - target: ../mods-available/userdir.load
+apache2service:
+ service.running:
+   - name: apache2
+   - watch:
+     - file: /etc/apache2/mods-enabled/userdir.conf
+     - file: /etc/apache2/mods-enabled/userdir.load
+```
+
+Eli selitettynä. pkg.installed tarkistaa että apache2 on asennettuna. file.managed kertoo index.html sourcen olevankin tekemäni kissa.html. file.symlinkkien targetit toimivat kohteina service watchille, jonka pyörimisen service.running varmistaa (itse apache2:n pyörimisen lisäksi).
+
+`Alla: init.sls-tiedosto.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/3750af97-1f1c-40cd-83d2-e5902d6977af)
+
+---
+
+Sitten Salt tilan ajo. Ajan sen ykkösorjallani komennolla `$ sudo salt 't001' state.apply apache2` . Saan tulokseksi succeeded: 5 (changed = 4). Jossain parametrissä ei ole siis tapahtunut muutoksia. Se on näköjään apache2 pkg.installed, sillä se oli orjakoneella jo aiemmin asennettuna. Kaikki näyttää erittäin hyvältä. 
+
+`Alla: 2 kuvakaappausta salt tilan ajamisesta.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/aba6a518-e221-487f-8a82-25eacba29438)
+
+---
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/bed2f205-a3b1-42ae-9627-ae733c69627d)
+
+---
+
+Sitten vielä testataan tilanne itse orjakoneella. Poistun tmaster koneelta exitillä, ja siirryn t001 koneelle komennolla `$ vagrant ssh t001` . Emme tarvitse apache2 sivun näkemiseen graafista verkkoselainta, vaan tätä varten on Linux-palvelimet kurssilta tuttu suosikki, w3m, joka on tekstipohjainen verkkoselain. Vähän niinkuin teksti-tv? :D
+
+Asennan sen komennolla `$ sudo apt-get install w3m` . Sen jälkeen ajan komennon `$ w3m -v http://127.0.0.1/` , joka avaa w3m ohjelman ja näyttää localhost-sivuni, eli apache2 index.html-sivuni tekstipohjaisesti. Muokkaan vielä komentoa niin, ettei itse ohjelma eli musta tausta ja sivun teksti vie koko näyttöä. Ajan komennon `$ w3m -v http://127.0.0.1/ | more` , joka printtaa sivuni suoraan terminaliin. Se sisältää täysin saman tekstin kuin kissa.html, joten homma toimii!
+
+`Alla: index.html cattaily ja localhost-sivu. Huomaa kuinka w3m:lla ei näy html-parametreja.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/30212e1a-da43-4a3c-ace8-014697a1897d)
+
+---
+
+
+
+
+
+
+
 
 
 ## Lähteet
