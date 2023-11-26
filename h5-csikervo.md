@@ -75,10 +75,70 @@ Seuraavaksi ajan komennon `$ cat concacts.db` , ja huomaankin heti alimpana ett�
 
 ## c) Komennus
 
+Lähdin tässä tehtävässä luomaan Salt-tilaa, joka ajaa järjestelmässä uuden komennon. Ajattelin tehdä simppelin komennon, joka tarkastaa onko nyt viikonloppu ja ilmoittaa jos on, ja jos ei ole. Olin vielä Debian 12-virtuaalikoneessa, jossa haluan ensin testata shell scriptiä ja nähdä saanko sitä toimimaan, ennen kuin siirryn Vagrantiin ja Saltiin. Luon uuden tiedoston komennolla `$ sudo nano onkovklp.sh` , ja syötän sinne seuraavan koodinpätkän, jonka löysin verkosta StackOverflow foorumilta käyttäjältä paxdiablo:
+
+```
+#!/bin/bash
+
+if [[ $(date +%u) -gt 5 ]]; then echo "Se on viikonloppu!"
+
+else echo "Ei oo viälä..." ;fi
+```
+
+(StackOverflow, 2010)
+
+Scripti toimii niin, että date +%u antaa viikonpäivät numeropätkässä lukuina 1-7. -gt 5 puolestaan tarkoittaa "greater than 5" eli "suurempi kuin 5", ja tässä tilanteessa sillä haetaan lukuja 6 ja 7, eli lauantai ja sunnuntai. Jos scriptiä ajaessa on lauantai tai sunnuntai, se ilmoittaa echolla että on viikonloppu. Jos taas ei ole (else), se ilmoittaa että ei ole vielä.
+
+`Alla: onkovklp.sh tiedoston muokkaus Debianissa:`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e4b8132a-367d-4e66-a73e-ad15096703ef)
+
+---
+
+Annan tiedostolle ajo-oikeuden komennolla `$chmod +x onkovklp.sh` , ja ajan sen testatakseni toimivuutta.
+
+`Alla: scriptin ajaminen onnistuneesti:`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/65b3b5fb-e227-445a-8031-e29f98581b7e)
+
+---
+
+Sitten vaan samaa mutta automatisoituna, eli hypätään Vagrantin ja Saltin puolelle. Avaan Windows-koneellani komentokehotteen, siirryn vagrant-hakemistooni ja ajan koodin `$ vagrant up` , jolla pistän koneet käyntiin ja hyppään herran selkään komennolla `$ vagrant ssh tmaster`.
+
+Olen ottanut kuvan Teron tunnilla näyttämästä "morning"-esimerkistä ja muistan jotenkin miten homma toimi. 
+
+Menen ensin /usr/local/bin-hakemistoon komennolla `$ cd /usr/local/bin`. Luon uuden scriptitiedoston komennolla `$nano onkovklp.sh` , johon syötän saman scriptipätkän kuin ylempänäkin. 
+
+
+
+Tämän jälkeen yritän ajaa scriptin komennolla `$ onkovklp.sh` . Vastauksena tyly permission denied, unohtui meinaas muokata oikeudet. Korjataan tilanne komennolla `$ sudo chmod 755 onkovklp.sh` . Kokeilen uudestaan, ja nyt toimii!
+
+Sitten siirryn /srv/salt-hakemistoon komennolla `$ cd /srv/salt` . Teen siellä uuden hakemiston komennolla `$ mkdir onkovklp` . Siirryn sinne, ja teen vielä samannimisen tiedoston komennolla `$ sudo nano onkovklp` . Lisään sinne jälleen samaisen scriptipätkän kuin ylempänäkin, ja tallennan sen ctrl + o ja ctrl + x. 
+
+Tarvitaan vielä init.sls-tiedosto, joka kertoo orjalle scriptin sijainnin ja tarvittavat oikeudet. Luon sellaisen komennolla `$ sudoedit init.sls` , ja lisään sinne alla olevan koodinpätkän.
+
+`Alla: Init.sls-tiedoston muokkaus:`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/914331b3-0c79-4cf0-b1af-5ec62b504637)
+
+---
+
+Tämän jälkeen testauksen pariin, ajan komennon `$ sudo salt 't001' state.apply onkovklp` , joka luo t001-orjalle /usr/local/bin-hakemistoon samaisen scriptitiedoston. Varmistetaan vielä komennolla `$ sudo salt 't001' cmd.run 'ls /usr/local/bin'` että tiedosto on varmasti siellä.
+
+Näyttää olevan, joten lopuksi ajetaan se komennolla `$ sudo salt 't001' cmd.run 'onkovklp'` . Vastauksena saan tiedon, että on viikonloppu. Eli homma toimii!
+
+`Alla: Ylläajetut komennot.`
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/97af6006-85b7-4f41-af2a-085fe7dfcf38)
+
+---
+
 
 
 ## Lähteet
 
 Karvinen, T. 3.4.2018. Apache User Homepages Automatically – Salt Package-File-Service Example. Luettavissa: https://terokarvinen.com/2018/04/03/apache-user-homepages-automatically-salt-package-file-service-example/. Luettu: 26.11.2023.
+
+StackOverflow, käyttäjältä paxdiablo. 16.8.2010. How to check if today is a weekend in bash? Luettavissa: https://stackoverflow.com/questions/3490032/how-to-check-if-today-is-a-weekend-in-bash. Luettu: 26.11.2023.
 
 Ubuntu, s.a. CUPS - Print Server. Luettavissa: https://ubuntu.com/server/docs/service-cups. Luettu: 26.11.2023.
