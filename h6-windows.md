@@ -1,6 +1,6 @@
 # H6- Windows
 
-Tein tehtävää itsenäisesti kotonani sunnuntaina 3.12. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä.
+Tein tehtävää itsenäisesti kotonani sunnuntaina 3.12. Tein tehtävät HP pavilion kannettavallani, jossa on Intel i5-9300H prosessori, 16gt RAM, 512gt SSD ja Windows 10 home-käyttöjärjestelmä. Kaikki tehtävät on tehty _Infra as Code 2023_ ohjeiden mukaan. (Karvinen, 2023)
 
 ## x) Lue ja tiivistä.
 
@@ -178,15 +178,12 @@ Kuten aina, tarkastetaan lopputulos muita väyliä pitkin. Nopealla googlauksell
 
 ## i) Vapaaehtoinen: käytä Saltin cmd.run -funktiota Windowsilla.
 
+Vedetään tämäkin aika helpolla komennolla. Katsotaan vaikka IPv4-osoite ipconfig komennolla, joten salt-tila tässä tapauksessa `$ salt-call --local state.single cmd.run ipconfig`. Lopputuloksena juuri se, mitä haluammekin.
 
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/4ad6c305-b9ed-4c50-b543-b1541240cfef)
+>Yllä: Onnistunut ipconfig.
 
-
-
-
-
-
-
-
+---
 
 ## Lähteet
 
@@ -197,6 +194,8 @@ Halonen, Rajala ja Ollikainen. 2023. Installing Windows 10 on a virtual machine.
 JRissanen. h5 - Windows. Luettavissa: https://github.com/JRissanen/h5-Windows. Luettu: 3.12.2023.
 
 Karvinen, T. 28.10.2021. Run Salt Command Locally. Luettavissa: https://terokarvinen.com/2021/salt-run-command-locally/. Luettu: 3.12.2023.
+
+Karvinen, T. 13.10.2023. Infra as Code 2023. Luettavissa: https://terokarvinen.com/2023/configuration-management-2023-autumn/. Luettu: 3.12.2023.
 
 LSB Workgroup, The Linux Foundation. 2015. Filesystem Hierarchy Standard. Luettavissa: https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html. Luettu: 3.12.2023.
 
