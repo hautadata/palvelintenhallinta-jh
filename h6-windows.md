@@ -42,7 +42,52 @@ Asensin Windowsin virtuaalikoneeseen VirtualBoxissa tiistain luennolla 28.11. As
 
 Latasin Windows 10-käyttöjärjestelmän ISO-tiedoston Microsoftin virallisilta sivuilta. Valitsin "English (Great Britain) ja tiedoston ISO – Enterprise downloads, 64-bit download. Asennuksessa kesti puolisen tuntia hieman hitaan verkkoni takia. 
 
-Ladattuani ISO-tiedoston valitsin VirtualBoxissa "new", josta pääsin määrittelemään uutta virtuaalikonetta. 
+Ladattuani ISO-tiedoston valitsin VirtualBoxissa "new", josta pääsin määrittelemään uutta virtuaalikonetta. Annoin koneelle nimen "Winukka", valitsin lataamani ISO-tiedoston, valitsin "skip unattended install", laitoin RAM-muistia 8192mt, prosessoreja 2, sekä virtuaalisen kovalevyn muistia 50gt. 
+
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/da451828-6083-4990-8eb7-fb76b441b0f1)
+>Yllä: Aiemmin luomani Windows 10-virtuaalikone, ja sen muistimäärä.
+
+## b) Asenna Salt Windowsille.
+
+Lähdin asentamaan Saltia Windowsille lataamalla sen Salt Projectin Salt Install Guide Windows -sivulta. Tiedoston nimi oli https://repo.saltproject.io/salt/py3/windows/latest/Salt-Minion-3006.4-Py3-AMD64-Setup.exe . Menin setupin läpi oletusasetuksilla, ja Master hostnamea ja minion namea kysyttäessä jätin nekin oletusarvoisiksi. Lopussa Salt ilmoitti vielä, että asennukseen vaadittavaa vcredistiä ei ole asennettuna, joten asensin senkin samalla.
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/03204717-d442-4699-bfd7-58228f34575b)
+>Yllä: Saltin asennusta, ja hostin ja minionin nimeäminen.
+
+---
+
+Avasin Windows Powershellin ja lähdin testaamaan Saltin toimivuutta aluksi komennolla `$ salt-call --local` , joka antoi pitkän listan eri syntakseja. Kokeilin listalta löytyvää --version syntaksia, joka tulostaa Saltin version komennolla `$ salt-call --local --version` .
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/e972603f-b834-4909-9ae5-b6bd715b58bb)
+>Yllä: Ajetut komennot Saltin testauksessa.
+
+---
+
+### c) Kerää Windows-koneesta tietoa
+
+Lähdin keräämään tietoa Windows-koneesta komennolla `$ salt-call --local grains.items` . Ihmettelin miksi sain errorin, mutta nopeasti huomasin että kyseessä oli "permission denied". En ollut avannut Powershelliä adminina, joten suljin nykyisen ja hain uudestaan Powershellin, ja tällä kertaa "run as administrator". Ajoin sen jälkeen komennon uudestaan, ja tällä kertaa se toimi moitteettomasti!
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/d16924d1-5753-47b3-9804-f681c7afc1cf)
+>Yllä: grains.items komento ajettuna adminina.
+
+---
+
+Tehtävässä oli tarkoitus poimia vielä muutamia keskeisiä tietoja, joita saamme syöttämällä komentoon vielä jonkun spesifoivan syntaksin. Kun poimitaan vain yksittäisiä tietoja, täytyy komentoa muokata ja käyttää "grains.item" ilman s-kirjainta, jolloin komento ei ole monikossa eikä printtaa kaikkia tietoja. Ajattelin että printataan vaikka pelkästään käyttöjärjestelmän versio, IPv4-osoite ja RAM-muistin määrä. Ajoin näitä varten komennot `$ salt-call --local grains.item osversion/ipv4/memtotal` (3 eri komentoa, loppuosa jokaisella eri)
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/8f5c3720-cabd-48fb-ac0c-440dbcfb5aa4)
+>Yllä: grain.itemillä haettuja yksittäisiä tietoja koneesta.
+
+---
+
+## d) Kokeile Saltin file -toimintoa Windowsilla.
+
+
+
+
+
+
+
 
 
 
