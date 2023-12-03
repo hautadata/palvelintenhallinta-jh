@@ -82,6 +82,24 @@ Tehtävässä oli tarkoitus poimia vielä muutamia keskeisiä tietoja, joita saa
 
 ## d) Kokeile Saltin file -toimintoa Windowsilla.
 
+Lähdin kokeilemaan Saltin file-toimintoa hyvin perinteisellä tavalla. Päätin katsoa kurssin ensimmäistä tehtävää, eli omaa H1 - Viisikkoa, jossa olimme käyttäneet eri toimintoja lokaalisti, ja joukossa oli juurikin tuo file-toiminto myös. Halusin tehdä uuden tekstitiedoston, ja koittaa lisätä sinne vielä jotain tekstiä. 
+
+Käytin tähän komentoa `$ sal-call --local state.single file.managed c:\users\joonas\testi.txt contents="Tämä..."` 
+
+Komento näytti toimivan onnistuneesti! Halusin vielä tarkistaa tallentuiko sisältökin, ja hetken pähkäiltyäni päätin kokeilla ihan perinteistä cat-komentoa, jonka en uskonut toimivan Windowsilla, mutta positiivisena yllätyksenä se toimi hyvin. 
+
+Eli tämän jälkeen vielä tarkistettiin sisältö komennolla `$ cat C:\users\joo\testi.txt` .
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/db60002b-e6f0-4b7c-830e-c011f8c4d389)
+>Yllä: file-toiminnon kokeilua uuden tiedoston merkeissä, ja sisällön tarkastus cat-komennolla.
+
+---
+
+## e) Kokeile jotain itsellesi uutta toimintoa Saltista Windowsilla.
+
+
+
+
 
 
 
