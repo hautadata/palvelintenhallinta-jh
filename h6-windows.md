@@ -84,7 +84,7 @@ Tehtävässä oli tarkoitus poimia vielä muutamia keskeisiä tietoja, joita saa
 
 Lähdin kokeilemaan Saltin file-toimintoa hyvin perinteisellä tavalla. Päätin katsoa kurssin ensimmäistä tehtävää, eli omaa H1 - Viisikkoa, jossa olimme käyttäneet eri toimintoja lokaalisti, ja joukossa oli juurikin tuo file-toiminto myös. Halusin tehdä uuden tekstitiedoston, ja koittaa lisätä sinne vielä jotain tekstiä. 
 
-Käytin tähän komentoa `$ sal-call --local state.single file.managed c:\users\joonas\testi.txt contents="Tämä..."` 
+Käytin tähän komentoa `$ sal-call --local state.single file.managed C:\users\joo\testi.txt contents="Tämä..."` 
 
 Komento näytti toimivan onnistuneesti! Halusin vielä tarkistaa tallentuiko sisältökin, ja hetken pähkäiltyäni päätin kokeilla ihan perinteistä cat-komentoa, jonka en uskonut toimivan Windowsilla, mutta positiivisena yllätyksenä se toimi hyvin. 
 
@@ -96,6 +96,30 @@ Eli tämän jälkeen vielä tarkistettiin sisältö komennolla `$ cat C:\users\j
 ---
 
 ## e) Kokeile jotain itsellesi uutta toimintoa Saltista Windowsilla.
+
+Päätin kokeilla jotain uutta toimintoa etsimällä aluksi jonkun aivan tuntemattoman toiminnon. Päätin hakea inspiraatiota Salt Projectin [State Modules](https://docs.saltproject.io/en/latest/ref/states/all/)-sivulta, josta löytyy kaikki Saltin toiminnot. 
+
+Hetken toimintoja ihmetellessäni tuli eteeni "win_path"-niminen toiminto, joka vaikutti suoritettavalta, ja en ollut toiminnosta ennen kuullutkaan. Painoin tilan nimestä, josta pääsin win_pathin omalle salt.states-sivulle. Nopeasti selvisikin, kuten nimestä voi päätellä, että toiminnolla hallitaan Windowsin polkuja (patheja).
+
+Päätin luoda uuden pathin kotihakemistooni komennolla `$ salt-call --local state.single win_path.exists C:\users\joo\onkolemassa` . Sain komennolla positiivisen tuloksen, succeeded: 1 (changed=1). Päätin vielä ajaa komennon uudelleen tarkistaakseni idempotentin. Nyt vastauksena oli, että polku löytyy jo, ja täten ollen mitään ei muuttunut toimintoa ajettaessa.
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/4e6cb2d9-0178-431f-9094-a69cb2fa84db)
+>Yllä: win_path.exist kokeilua.
+
+---
+
+Ja kuten aina, niin nytkin tarkistetaan lopputulos jotain muuta kautta. Yritin ajaa komennon `$ dir C:\users\joo\` tarkistaakseni tuloksen, mutta siellä ei näkynyt mitään onkoolemassa-nimistä polkua. Sentään aiemmin luotu testi.txt näkyi.
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5a7e6d6c-d2ab-424c-bae8-730f91e2aafe)
+>Yllä: Missä path?
+
+Päätin vielä yrittää ihan komentoa `$ path`, mutta se ei PowerShellissä toiminut. Siirryin komentokehotteeseen, jossa ajoin komennon `$ path C:\users\joo\`, ja nyt sain onnistuneesti listan patheistani kotihakemistossani, jossa joukossa \onkoolemassa. 
+
+Lista näytti erilaiselta, kuin mitä dir-komento antoi. Tässä vaiheessa hiffasin, että path ja directory eivät olekkaan sama asia. 
+
+Nopealla googlauksella selvitin eron, joka on siinä että directory on aina kansio. Path sen sijaan on kuin "road map", joka on polku hakemistoon, kansioon tai yksittäiseen tiedostoon, mutta se ei kuitenkaan ole mitään näistä. (Corel, s.a.)
+
+
 
 
 
@@ -111,6 +135,8 @@ Eli tämän jälkeen vielä tarkistettiin sisältö komennolla `$ cat C:\users\j
 
 
 ## Lähteet
+
+Corel. s.a. What are "directory" and "path"? Luettavissa: https://kb.corel.com/en/125970#:~:text=(Alternate%20definition%3A%20A%20directory%20is,a%20file%20or%20another%20folder.). Luettu: 3.12.2023.
 
 Halonen, Rajala ja Ollikainen. 2023. Installing Windows 10 on a virtual machine. Luettavissa: https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md. Luettu: 3.12.2023.
 
