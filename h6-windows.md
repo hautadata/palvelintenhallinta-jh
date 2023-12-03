@@ -128,12 +128,37 @@ Nopealla googlauksella selvitin eron, joka on siinä että directory on aina kan
 
 ---
 
+## g) Vapaaehtoinen: käytä Saltin service-funktiota Windowsilla. 
 
+Lähdin kokeilemaan service-funktiota Windowsilla. Lähdin ensin hakemaan tietoa eri palveluista verkosta, ja löysin tiedon, että komentokehotteella komennolla `$ services.msc` saa auki listan palveluista. (Wikihow, 2023)
 
+Katsoin jonkun palvelun, joka ei ole päällä. Koitin aluksi käynnistää Remote Desktop Serviceä komennolla `$ salt-call --local state.single service.running Remote Desktop Services enable=True` , mutta se ei toiminut. Vastauksena oli vain että service remote not present, ja mitään ei muuttunut.
 
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/7f7f8dad-e9aa-4e7a-a308-6ccc888b7e66)
+>Yllä: Ei toiminut
 
+---
 
+En kuitenkaan lannistunut, vaan yritin vielä toista palvelua. Tällä kertaa kohteena webclient. Ajoin komennon `$ salt-call --local state.single service.running webclient enable=True` . Tällä kertaa sain positiivisen tuloksen, vastauksena että "Started service webclient" ja "Succeeded: 1 (changed= 1).
 
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/7a983155-499a-4d6d-8c5f-8d9711cdd710)
+>Yllä: Onnistunut komennon ajo.
+
+---
+
+Menin servicesiin tarkistamaan vielä, että palvelu meni varmasti päälle. Status-kohdassa ei lue että "running" mutta vasemmalla Webclient-otsikon alapuolella on vaihtoehdot lopettaa ja uudelleenkäynnistää palvelu. Nämä + aiemmin saamani onnistunut tulos salt-tilasta, ja voidaan siis olettaa että palvelu tosiaankin on päällä.
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/2f971c1a-4a10-4ecf-a814-8082b797c576)
+>Yllä: Palvelu päällä.
+
+---
+
+Pistetään se vielä pois päältä, ja katsotaan muuttuuko mikään services-ikkunassa. Ajan komennon `$ salt-call --local state.single service.dead webclient enable=False` . Tästä tuli myös onnistunut lopputulos, kommenttina että "webclien has been disabled, and is dead". Succeeded: 1 (Changed= 1).
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/a90d5b09-9fa8-4432-819f-72fb716b2b83)
+>Yllä: Onnistuneesti lopetettu webclient-palvelu.
+
+---
 
 
 
@@ -154,3 +179,5 @@ Halonen, Rajala ja Ollikainen. 2023. Installing Windows 10 on a virtual machine.
 JRissanen. h5 - Windows. Luettavissa: https://github.com/JRissanen/h5-Windows. Luettu: 3.12.2023.
 
 LSB Workgroup, The Linux Foundation. 2015. Filesystem Hierarchy Standard. Luettavissa: https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html. Luettu: 3.12.2023.
+
+WikiHow. 11.7.2023. How to Open Windows Services. Luettavissa: https://www.wikihow.com/Open-Windows-Services. Luettu: 3.12.2023.
