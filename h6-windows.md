@@ -132,7 +132,7 @@ Nopealla googlauksella selvitin eron, joka on siinä että directory on aina kan
 
 Lähdin kokeilemaan service-funktiota Windowsilla. Lähdin ensin hakemaan tietoa eri palveluista verkosta, ja löysin tiedon, että komentokehotteella komennolla `$ services.msc` saa auki listan palveluista. (Wikihow, 2023)
 
-Katsoin jonkun palvelun, joka ei ole päällä. Koitin aluksi käynnistää Remote Desktop Serviceä komennolla `$ salt-call --local state.single service.running Remote Desktop Services enable=True` , mutta se ei toiminut. Vastauksena oli vain että service remote not present, ja mitään ei muuttunut.
+Katsoin jonkun palvelun, joka ei ole päällä. Tarkistin H1 tehtävän Teron artikkelista, millä komennolla olemme serviceä käyttäneet ja muutin vain servicen nimen. Koitin aluksi käynnistää Remote Desktop Serviceä komennolla `$ salt-call --local state.single service.running Remote Desktop Services enable=True` (Karvinen, 2021) , mutta se ei toiminut. Vastauksena oli vain että service remote not present, ja mitään ei muuttunut.
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/7f7f8dad-e9aa-4e7a-a308-6ccc888b7e66)
 >Yllä: Ei toiminut
@@ -160,6 +160,24 @@ Pistetään se vielä pois päältä, ja katsotaan muuttuuko mikään services-i
 
 ---
 
+## h) Vapaaehtoinen: käytä Saltin user-funktiota Windowsilla.
+
+Lähdin kokeilemaan user-funktiota myös Teron H1-tehtävän esimerkeillä. Hypätään kylmänviileästi taas suoraan syvään päätyyn, ja kokeillaan luoda uusi käyttäjä nimeltä "ministeri" komennolla `$ salt-call --local state.single user.present ministeri` . Lopputulos näyttää onnistuneelta, palautteena "new user ministeri created".
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/8de6aaf3-3fc4-49e4-ac0d-13a38efa6c4a)
+>Ministeri mestoilla.
+
+---
+
+Kuten aina, tarkastetaan lopputulos muita väyliä pitkin. Nopealla googlauksella selviää, että komennolla `$ get-localuser` saa näkymään kaikki käyttäjät. Komento antoi listan käyttäjistä. Siellä näkyi itse ministerikin.
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5745f9da-d382-42e0-b1d7-114b235a27a0)
+>Yllä: Ministeri listoilla.
+
+---
+
+## i) Vapaaehtoinen: käytä Saltin cmd.run -funktiota Windowsilla.
+
 
 
 
@@ -177,6 +195,8 @@ Corel. s.a. What are "directory" and "path"? Luettavissa: https://kb.corel.com/e
 Halonen, Rajala ja Ollikainen. 2023. Installing Windows 10 on a virtual machine. Luettavissa: https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md. Luettu: 3.12.2023.
 
 JRissanen. h5 - Windows. Luettavissa: https://github.com/JRissanen/h5-Windows. Luettu: 3.12.2023.
+
+Karvinen, T. 28.10.2021. Run Salt Command Locally. Luettavissa: https://terokarvinen.com/2021/salt-run-command-locally/. Luettu: 3.12.2023.
 
 LSB Workgroup, The Linux Foundation. 2015. Filesystem Hierarchy Standard. Luettavissa: https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html. Luettu: 3.12.2023.
 
