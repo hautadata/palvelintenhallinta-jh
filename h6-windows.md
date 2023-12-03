@@ -113,11 +113,22 @@ Ja kuten aina, niin nytkin tarkistetaan lopputulos jotain muuta kautta. Yritin a
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5a7e6d6c-d2ab-424c-bae8-730f91e2aafe)
 >Yllä: Missä path?
 
+---
+
 Päätin vielä yrittää ihan komentoa `$ path`, mutta se ei PowerShellissä toiminut. Siirryin komentokehotteeseen, jossa ajoin komennon `$ path C:\users\joo\`, ja nyt sain onnistuneesti listan patheistani kotihakemistossani, jossa joukossa \onkoolemassa. 
+
+![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/b526a9d6-79c3-4a69-aaa0-9d6eaeabe9c1)
+>Yllä: path-komennolla onnistunut listaus.
+
+---
 
 Lista näytti erilaiselta, kuin mitä dir-komento antoi. Tässä vaiheessa hiffasin, että path ja directory eivät olekkaan sama asia. 
 
 Nopealla googlauksella selvitin eron, joka on siinä että directory on aina kansio. Path sen sijaan on kuin "road map", joka on polku hakemistoon, kansioon tai yksittäiseen tiedostoon, mutta se ei kuitenkaan ole mitään näistä. (Corel, s.a.)
+
+---
+
+
 
 
 
