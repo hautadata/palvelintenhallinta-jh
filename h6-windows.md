@@ -84,7 +84,7 @@ Tehtävässä oli tarkoitus poimia vielä muutamia keskeisiä tietoja, joita saa
 
 Lähdin kokeilemaan Saltin file-toimintoa hyvin perinteisellä tavalla. Päätin katsoa kurssin ensimmäistä tehtävää, eli omaa H1 - Viisikkoa, jossa olimme käyttäneet eri toimintoja lokaalisti, ja joukossa oli juurikin tuo file-toiminto myös. Halusin tehdä uuden tekstitiedoston, ja koittaa lisätä sinne vielä jotain tekstiä. 
 
-Käytin tähän komentoa `$ sal-call --local state.single file.managed C:\users\joo\testi.txt contents="Tämä..."` 
+Käytin tähän komentoa `$ salt-call --local state.single file.managed C:\users\joo\testi.txt contents="Tämä..."` 
 
 Komento näytti toimivan onnistuneesti! Halusin vielä tarkistaa tallentuiko sisältökin, ja hetken pähkäiltyäni päätin kokeilla ihan perinteistä cat-komentoa, jonka en uskonut toimivan Windowsilla, mutta positiivisena yllätyksenä se toimi hyvin. 
 
@@ -165,11 +165,11 @@ Pistetään se vielä pois päältä, ja katsotaan muuttuuko mikään services-i
 Lähdin kokeilemaan user-funktiota myös Teron H1-tehtävän esimerkeillä. Hypätään kylmänviileästi taas suoraan syvään päätyyn, ja kokeillaan luoda uusi käyttäjä nimeltä "ministeri" komennolla `$ salt-call --local state.single user.present ministeri` . Lopputulos näyttää onnistuneelta, palautteena "new user ministeri created".
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/8de6aaf3-3fc4-49e4-ac0d-13a38efa6c4a)
->Ministeri mestoilla.
+>Yllä: Ministeri mestoilla.
 
 ---
 
-Kuten aina, tarkastetaan lopputulos muita väyliä pitkin. Nopealla googlauksella selviää, että komennolla `$ get-localuser` saa näkymään kaikki käyttäjät. Komento antoi listan käyttäjistä. Siellä näkyi itse ministerikin.
+Kuten aina, tarkastetaan lopputulos muita väyliä pitkin. Nopealla googlauksella selviää, että komennolla `$ get-localuser` saa näkymään kaikki käyttäjät. (Lepide, 2023) Komento antoi listan käyttäjistä. Siellä näkyi itse ministerikin.
 
 ![image](https://github.com/hautadata/palvelintenhallinta-jh/assets/148875340/5745f9da-d382-42e0-b1d7-114b235a27a0)
 >Yllä: Ministeri listoilla.
@@ -196,6 +196,8 @@ JRissanen. h5 - Windows. Luettavissa: https://github.com/JRissanen/h5-Windows. L
 Karvinen, T. 28.10.2021. Run Salt Command Locally. Luettavissa: https://terokarvinen.com/2021/salt-run-command-locally/. Luettu: 3.12.2023.
 
 Karvinen, T. 13.10.2023. Infra as Code 2023. Luettavissa: https://terokarvinen.com/2023/configuration-management-2023-autumn/. Luettu: 3.12.2023.
+
+Lepide. 18.10.2023. PowerShell Get-LocalUser to List All Local Users on Windows. Luettavissa: https://www.lepide.com/how-to/list-all-user-accounts-on-a-windows-system-using-powershell.html. Luettu: 3.12.2023.
 
 LSB Workgroup, The Linux Foundation. 2015. Filesystem Hierarchy Standard. Luettavissa: https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html. Luettu: 3.12.2023.
 
